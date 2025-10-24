@@ -1,0 +1,9 @@
+ec\edu\espoch\cafeandino\CafeAndino.class
+ec\edu\espoch\cafeandino\enumeracion\EstadoPedido.class
+ec\edu\espoch\cafeandino\clases\ItemPedido.class
+ec\edu\espoch\cafeandino\clases\Cliente.class
+ec\edu\espoch\cafeandino\enumeracion\Tallas.class
+ec\edu\espoch\cafeandino\clases\Factura.class
+ec\edu\espoch\cafeandino\enumeracion\MetodoPago.class
+ec\edu\espoch\cafeandino\clases\Promocion.class
+ec\edu\espoch\cafeandino\clases\Pedido.class
