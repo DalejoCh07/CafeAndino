@@ -32,12 +32,20 @@ public class ItemPedido {
         return respuesta;
     }
     
-    public boolean eliminarExtra(){
-        return false;
+    public boolean eliminarExtra(String elimExtra){
+        boolean respuesta=false;
+        for(int i=0;i<extra.length;i++){
+            if(extra[i]==elimExtra){
+                extra[i]=null;
+                respuesta=true;
+            }
+        }
+            
+        return respuesta;
     }
     
     public boolean cambiarTalla(Tallas talla){
-        return false;
+        return true;
     }
     
     public double aplicarPromocion(Promocion promocion, Cliente cliente){
