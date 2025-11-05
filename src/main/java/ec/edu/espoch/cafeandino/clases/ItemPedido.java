@@ -1,6 +1,7 @@
 
 package ec.edu.espoch.cafeandino.clases;
 
+import ec.edu.espoch.cafeandino.enumeracion.EstadoPedido;
 import ec.edu.espoch.cafeandino.enumeracion.Tallas;
 
 public class ItemPedido {
@@ -14,18 +15,25 @@ public class ItemPedido {
     
     //Metodos
 
+    @Override
+    public String toString() {
+        return "ItemPedido{" + "idItem=" + idItem + ", nombreBebida=" + nombreBebida + ", talla=" + talla + ", extra=" + extra + ", precio=" + precio + ", descuentoPromocion=" + descuentoPromocion + '}';
+    }
+
+    
+    
     public ItemPedido(int idItem, String nombreBebida, Tallas talla) {
         this.idItem = idItem;
         this.nombreBebida = nombreBebida;
         this.talla = talla;
-        extra=new String[3];
+        extra=new String[1];
     }
     
     public boolean agregarExtra(String nombre){
         boolean respuesta=false;
         for(int i=0;i<extra.length;i++){
             if (extra[i]!=null){
-                extra[i]=nombre;
+                this.extra[i]=nombre;
                 respuesta=true;
             }
         }
@@ -36,19 +44,26 @@ public class ItemPedido {
         boolean respuesta=false;
         for(int i=0;i<extra.length;i++){
             if(extra[i]==elimExtra){
-                extra[i]=null;
+                this.extra[i]=null;
                 respuesta=true;
             }
         }
-            
         return respuesta;
     }
     
-    public boolean cambiarTalla(Tallas talla){
-        return true;
+    public boolean cambiarTalla(Tallas tallaNueva, EstadoPedido estadoActual){
+        boolean respuesta=false;
+        if(estadoActual!=EstadoPedido.PREPARANDO){
+            this.talla=tallaNueva;
+            respuesta=true;
+        }
+        return respuesta;
     }
     
     public double aplicarPromocion(Promocion promocion, Cliente cliente){
+        if (promocion.nombreBebida=="Latte" && promocion.talla==Tallas.MEDIANO){
+            descuentoPromocion=promocion.descuento;
+        }
         return 0;
     }
 
