@@ -13,12 +13,13 @@ public class Factura {
     
     //Metodos
 
-    public Factura(int idFactura, MetodoPago tipoPago) {
-        this.idFactura = idFactura;
+    public Factura(MetodoPago tipoPago) {
+        this.idFactura = idFactura++;
         this.tipoPago = tipoPago;
     }
     
     public boolean generarFactura(Pedido pedido, Cliente cliente){
+        
         return false;
     }
     

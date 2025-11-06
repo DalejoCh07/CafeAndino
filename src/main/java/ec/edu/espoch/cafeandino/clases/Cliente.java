@@ -11,8 +11,8 @@ public class Cliente {
     
     //Metodos
 
-    public Cliente(int idCliente, String nombre, String ruc, String dirección) {
-        this.idCliente = idCliente;
+    public Cliente(String nombre, String ruc, String dirección) {
+        this.idCliente = idCliente++;
         this.nombre = nombre;
         this.ruc = ruc;
         this.dirección = dirección;

@@ -10,6 +10,7 @@ public class Pedido {
     public EstadoPedido estadoPedido;
     public double descuento;
     public String motivoCancelado;
+    public String observacionPedido;
     public double total=0;
     public String fecha;
     public ItemPedido[] items=new ItemPedido[2];
@@ -22,7 +23,8 @@ public class Pedido {
         
     }
     
-    public boolean añadirObservacion(String observacion){
+    public boolean añadirObservacion(String observacion){ 
+        observacionPedido=observacion;
         return false;
     }
     
@@ -47,16 +49,15 @@ public class Pedido {
     }
     
     public double calcDescuento(double porcentaje){
-        double total=0;
         total=calcTotal();
-        return this.descuento=total*porcentaje;
+        descuento=total*porcentaje;
+        return this.total=total-descuento;
     }
     
     public double calcTotal(){
-        for(int i=0; i<this.items.length;i++){
-            System.out.println("valor del item:"+this.items[0].precio);
+        double total=0;
+        for(int i=0;i<items.length;i++){
             total=total+this.items[i].precio;
-            System.out.println("despues"+total);
         }
         return total;
     }
@@ -92,7 +93,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "idPedido=" + idPedido + ", estadoPedido=" + estadoPedido + ", descuento=" + descuento + ", motivoCancelado=" + motivoCancelado + ", total=" + total + ", fecha=" + fecha + ", items=" + items[0].precio + '}';
+        return "Pedido{" + "idPedido=" + idPedido + ", estadoPedido=" + estadoPedido + ", descuento=" + descuento + ", motivoCancelado=" + motivoCancelado + ", total=" + this.total + ", fecha=" + fecha + ", items=" + items[0].precio + '}';
     }
     
     

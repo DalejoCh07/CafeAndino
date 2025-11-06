@@ -16,32 +16,27 @@ public class CafeAndino {
         
         //Promocion
         
-        //Promocion promocionDia=new Promocion(1, "Cupon del día", "Latte", Tallas.MEDIANO, true, 0.15, "26/10/2025");
+        Promocion promocionDia=new Promocion(1, "Cupon del día", "Latte", Tallas.MEDIANO, true, 0.15, "26/10/2025");
         
         //Agregar pedido 1 
+        Cliente clienteUno=new Cliente("Ana", "001", "La florida");
+        Pedido pedidoUno=new Pedido(EstadoPedido.CREADO);
+        pedidoUno.fecha="26/10/2025";
         
-        
-        Cliente clienteUno=new Cliente(1, "Ana", "001", "La florida");
-        
-        
-        ItemPedido item1PedidoUno=new ItemPedido(1, "Latte", Tallas.MEDIANO);
+        ItemPedido item1PedidoUno=new ItemPedido("Latte", Tallas.MEDIANO);
         item1PedidoUno.agregarExtra("Avena"); //Agregar extra al item
         item1PedidoUno.precio=3.5;
         
+        item1PedidoUno.aplicarPromocion(promocionDia, clienteUno);
+        
         System.out.println(item1PedidoUno.toString());
-        
-        
-        ItemPedido item2PedidoUno=new ItemPedido(2, "Expreso", Tallas.PEQUEÑO);
+
+        ItemPedido item2PedidoUno=new ItemPedido("Expreso", Tallas.PEQUEÑO);
         item2PedidoUno.agregarExtra("Kevin");
         item2PedidoUno.precio=2.5;
-        
-        
-        
+     
         System.out.println(item2PedidoUno.toString());
-        
-        
-        Pedido pedidoUno=new Pedido(EstadoPedido.CREADO);
-        
+  
         pedidoUno.agregarItems(item1PedidoUno);
         pedidoUno.agregarItems(item2PedidoUno);
         
@@ -50,7 +45,6 @@ public class CafeAndino {
         
         pedidoUno.calcDescuento(0.15);
         
-        //Aplicar descuento (cupon del día)
         
         //Cambiar estado pedido
         pedidoUno.cambiarEstado(EstadoPedido.PREPARANDO);
@@ -62,16 +56,31 @@ public class CafeAndino {
         
         System.out.println(pedidoUno.toString());
         
-        //Agregar pedido 2
+        //Agregar pedido 2 (Andres)
+        Cliente clienteDos=new Cliente("Andres", "002", "Las Americas");
         Pedido pedidoDos=new Pedido(EstadoPedido.CREADO);
         pedidoUno.fecha="26/10/2025";
         
-        ItemPedido item1PedidoDos=new ItemPedido(1, "Chocolate caliente", Tallas.GRANDE);
+        ItemPedido item1PedidoDos=new ItemPedido("Chocolate caliente", Tallas.GRANDE);
         item1PedidoDos.agregarExtra("Galleta de avena");
+        
+        pedidoDos.agregarItems(item1PedidoDos);
+        
         pedidoDos.cambiarEstado(EstadoPedido.PREPARANDO);
-        item1PedidoDos.cambiarTalla(Tallas.MEDIANO, EstadoPedido.PREPARANDO);
+        item1PedidoDos.cambiarTalla(Tallas.MEDIANO, pedidoDos.estadoPedido);
         pedidoDos.cancelar("Cliente cambió de idea");
         
+        //Pedido 3 
+        Cliente clienteTres=new Cliente("Pablo", "003", "Luis Guerra");
+        Pedido pedidoTres=new Pedido(EstadoPedido.CREADO);
+        pedidoUno.fecha="26/10/2025";
+        
+        ItemPedido item1PedidoTres=new ItemPedido("Capuchino", Tallas.PEQUEÑO);
+        pedidoTres.agregarItems(item1PedidoTres);
+        pedidoTres.añadirObservacion("Sin trazas de nueces");
+        
+        Factura facturaUno=new Factura(MetodoPago.EFECTIVO);
+        facturaUno.generarFactura(pedidoTres, clienteTres);
         
         
         

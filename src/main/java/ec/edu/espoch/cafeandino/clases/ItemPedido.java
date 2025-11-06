@@ -22,8 +22,8 @@ public class ItemPedido {
 
     
     
-    public ItemPedido(int idItem, String nombreBebida, Tallas talla) {
-        this.idItem = idItem;
+    public ItemPedido(String nombreBebida, Tallas talla) {
+        this.idItem = idItem++;
         this.nombreBebida = nombreBebida;
         this.talla = talla;
         extra=new String[1];
@@ -62,9 +62,9 @@ public class ItemPedido {
     
     public double aplicarPromocion(Promocion promocion, Cliente cliente){
         if (promocion.nombreBebida=="Latte" && promocion.talla==Tallas.MEDIANO){
-            descuentoPromocion=promocion.descuento;
+            descuentoPromocion=precio*promocion.descuento;
         }
-        return 0;
+        return precio-=descuentoPromocion;
     }
 
 }
