@@ -19,8 +19,10 @@ public class Factura {
     }
     
     public boolean generarFactura(Pedido pedido, Cliente cliente){
-        
-        return false;
+        this.monto=pedido.total;
+        this.ruc=cliente.ruc;
+        this.idPedido=pedido.idPedido;
+        return true;
     }
     
 }
