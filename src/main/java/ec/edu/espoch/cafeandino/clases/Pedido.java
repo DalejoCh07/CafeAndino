@@ -29,13 +29,18 @@ public class Pedido {
     }
     
     public boolean cambiarEstado(EstadoPedido nuevoEstado){
-        boolean respuesta=true;
-        if(nuevoEstado==EstadoPedido.ENTREGADO && this.estadoPedido!=EstadoPedido.LISTO){
-            respuesta=false;
-        } else{
-            this.estadoPedido=nuevoEstado;
+        if (this.estadoPedido == EstadoPedido.CREADO && nuevoEstado == EstadoPedido.PREPARANDO) {
+            this.estadoPedido = nuevoEstado;
+            return true;
+        } else if (this.estadoPedido == EstadoPedido.PREPARANDO && nuevoEstado == EstadoPedido.LISTO) {
+            this.estadoPedido = nuevoEstado;
+            return true;
+        } else if (this.estadoPedido == EstadoPedido.LISTO && nuevoEstado == EstadoPedido.ENTREGADO) {
+            this.estadoPedido = nuevoEstado;
+            return true;
         }
-        return respuesta;
+        System.out.println("Transición no permitida.");
+        return false;
     }
     
     public boolean cancelar(String motivo){
@@ -59,7 +64,7 @@ public class Pedido {
         for(int i=0;i<items.length;i++){
             total=total+this.items[i].precio;
         }
-        return total;
+        return this.total=total;
     }
     
     public boolean agregarItems(ItemPedido item){
@@ -90,11 +95,4 @@ public class Pedido {
         }
         return respuesta;
     }
-
-    @Override
-    public String toString() {
-        return "Pedido{" + "idPedido=" + idPedido + ", estadoPedido=" + estadoPedido + ", descuento=" + descuento + ", motivoCancelado=" + motivoCancelado + ", total=" + this.total + ", fecha=" + fecha + ", items=" + items[0].precio + '}';
-    }
-    
-    
 }

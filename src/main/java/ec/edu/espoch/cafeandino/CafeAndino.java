@@ -15,7 +15,6 @@ public class CafeAndino {
     public static void main(String[] args) {
         
         //Promocion
-        
         Promocion promocionDia=new Promocion(1, "Cupon del día", "Latte", Tallas.MEDIANO, true, 0.15, "26/10/2025");
         
         //Agregar pedido 1 
@@ -44,6 +43,8 @@ public class CafeAndino {
         System.out.println(total1);
         
         pedidoUno.calcDescuento(0.15);
+        
+        
         
         
         //Cambiar estado pedido
@@ -76,19 +77,21 @@ public class CafeAndino {
         pedidoUno.fecha="26/10/2025";
         
         ItemPedido item1PedidoTres=new ItemPedido("Capuchino", Tallas.PEQUEÑO);
+        item1PedidoTres.precio=2.5;
         pedidoTres.agregarItems(item1PedidoTres);
+        ItemPedido item2PedidoTres=new ItemPedido("Capuchino", Tallas.PEQUEÑO);
+        item2PedidoTres.precio=2.5;
+        pedidoTres.agregarItems(item2PedidoTres);
         pedidoTres.añadirObservacion("Sin trazas de nueces");
+        
+        pedidoTres.calcTotal();
         
         Factura facturaUno=new Factura(MetodoPago.EFECTIVO);
         facturaUno.generarFactura(pedidoTres, clienteTres);
         
         
         
-        
-        
-        
-        
-        
+        facturaUno.imprimirFactura();
         
     }
 }

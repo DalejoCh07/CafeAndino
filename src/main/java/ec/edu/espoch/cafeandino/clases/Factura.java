@@ -18,11 +18,20 @@ public class Factura {
         this.tipoPago = tipoPago;
     }
     
-    public boolean generarFactura(Pedido pedido, Cliente cliente){
+    public void generarFactura(Pedido pedido, Cliente cliente){
         this.monto=pedido.total;
         this.ruc=cliente.ruc;
         this.idPedido=pedido.idPedido;
-        return true;
+    }
+    
+    public void imprimirFactura(){
+        System.out.println("=======FACTURA========");
+        System.out.println("ID Factura: "+this.idFactura);
+        System.out.println("ID Pedido: "+this.idPedido);
+        System.out.println("Ruc Cliente: "+this.ruc);
+        System.out.println("Metodo de pago: "+this.tipoPago);
+        System.out.println("Monto: "+this.monto);
+        System.out.println("=======================");
     }
     
 }

@@ -14,14 +14,6 @@ public class ItemPedido {
     public double descuentoPromocion;
     
     //Metodos
-
-    @Override
-    public String toString() {
-        return "ItemPedido{" + "idItem=" + idItem + ", nombreBebida=" + nombreBebida + ", talla=" + talla + ", extra=" + extra + ", precio=" + precio + ", descuentoPromocion=" + descuentoPromocion + '}';
-    }
-
-    
-    
     public ItemPedido(String nombreBebida, Tallas talla) {
         this.idItem = idItem++;
         this.nombreBebida = nombreBebida;
@@ -53,16 +45,20 @@ public class ItemPedido {
     
     public boolean cambiarTalla(Tallas tallaNueva, EstadoPedido estadoActual){
         boolean respuesta=false;
-        if(estadoActual!=EstadoPedido.PREPARANDO){
-            this.talla=tallaNueva;
-            respuesta=true;
+        if (estadoActual == EstadoPedido.PREPARANDO || estadoActual == EstadoPedido.LISTO || estadoActual == EstadoPedido.ENTREGADO) {
+            System.out.println("No se puede cambiar talla cuando el pedido está en preparación o más avanzado.");
+            return false;
         }
+        this.talla = tallaNueva;
+        respuesta=true;
         return respuesta;
     }
     
     public double aplicarPromocion(Promocion promocion, Cliente cliente){
         if (promocion.nombreBebida=="Latte" && promocion.talla==Tallas.MEDIANO){
             descuentoPromocion=precio*promocion.descuento;
+        } else{
+            System.out.println("La promocion no aplica a esta bebida o tamaño");
         }
         return precio-=descuentoPromocion;
     }
