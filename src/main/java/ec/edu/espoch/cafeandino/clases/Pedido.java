@@ -17,7 +17,7 @@ public class Pedido {
     //public items=new ItemPedido[2];
     //Metodos
 
-    public Pedido(EstadoPedido estadoPedido) {
+    public Pedido(int idPedido, EstadoPedido estadoPedido) {
         this.estadoPedido = estadoPedido;
         this.idPedido = this.idPedido+1;
         
@@ -29,18 +29,20 @@ public class Pedido {
     }
     
     public boolean cambiarEstado(EstadoPedido nuevoEstado){
-        if (this.estadoPedido == EstadoPedido.CREADO && nuevoEstado == EstadoPedido.PREPARANDO) {
-            this.estadoPedido = nuevoEstado;
-            return true;
-        } else if (this.estadoPedido == EstadoPedido.PREPARANDO && nuevoEstado == EstadoPedido.LISTO) {
-            this.estadoPedido = nuevoEstado;
-            return true;
-        } else if (this.estadoPedido == EstadoPedido.LISTO && nuevoEstado == EstadoPedido.ENTREGADO) {
-            this.estadoPedido = nuevoEstado;
-            return true;
+        boolean respuesta=false;
+        if (this.estadoPedido==EstadoPedido.CREADO && nuevoEstado==EstadoPedido.PREPARANDO) {
+            this.estadoPedido=nuevoEstado;
+            respuesta=true;
+        } else if (this.estadoPedido==EstadoPedido.PREPARANDO && nuevoEstado==EstadoPedido.LISTO) {
+            this.estadoPedido=nuevoEstado;
+            respuesta=true;
+        } else if (this.estadoPedido==EstadoPedido.LISTO && nuevoEstado==EstadoPedido.ENTREGADO) {
+            this.estadoPedido=nuevoEstado;
+            respuesta=true;
+        }else{
+            System.out.println("El cambio de estado debe seguir el orden CREADO-PREPARANDO-LISTO-ENTREGADO.");
         }
-        System.out.println("Transición no permitida.");
-        return false;
+        return respuesta;
     }
     
     public boolean cancelar(String motivo){
@@ -95,4 +97,12 @@ public class Pedido {
         }
         return respuesta;
     }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "idPedido=" + idPedido + ", estadoPedido=" + estadoPedido + ", descuento=" + descuento + ", motivoCancelado=" + motivoCancelado + ", observacionPedido=" + observacionPedido + ", total=" + total + ", fecha=" + fecha + ", items=" + items[0].nombreBebida + '}';
+    }
+    
+    
+    
 }

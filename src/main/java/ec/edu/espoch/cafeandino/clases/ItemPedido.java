@@ -63,4 +63,10 @@ public class ItemPedido {
         return precio-=descuentoPromocion;
     }
 
+    @Override
+    public String toString() {
+        return "ItemPedido{" + "idItem=" + idItem + ", nombreBebida=" + nombreBebida + ", talla=" + talla + ", extra=" + extra[0] + ", precio=" + precio + ", descuentoPromocion=" + descuentoPromocion + '}';
+    }
+
+    
 }
